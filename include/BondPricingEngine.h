@@ -62,22 +62,27 @@ public:
     void setMarketEnvironment(const MultiMarketEnv& marketEnv);
     const MultiMarketEnv& getMarketEnvironment() const { return marketEnv_; }
     
-    // Main pricing methods
+    // Main pricing methods (asset-based)
     BondPricingResults priceBond(const FixedCouponBond& bond,
-                                const Date& valuationDate,
-                                const std::string& discountCurveName = "USD") const;
+                                const Date& valuationDate) const;
     
     Real calculatePresentValue(const FixedCouponBond& bond,
-                              const Date& valuationDate,
-                              const std::string& discountCurveName = "USD") const;
+                              const Date& valuationDate) const;
     
     Real calculateCleanPrice(const FixedCouponBond& bond,
-                            const Date& valuationDate,
-                            const std::string& discountCurveName = "USD") const;
+                            const Date& valuationDate) const;
     
     Real calculateDirtyPrice(const FixedCouponBond& bond,
-                            const Date& valuationDate,
-                            const std::string& discountCurveName = "USD") const;
+                            const Date& valuationDate) const;
+    
+    // Alternative pricing methods (curve-based for compatibility)
+    BondPricingResults priceBondWithCurve(const FixedCouponBond& bond,
+                                         const Date& valuationDate,
+                                         const std::string& discountCurveName) const;
+    
+    Real calculatePresentValueWithCurve(const FixedCouponBond& bond,
+                                       const Date& valuationDate,
+                                       const std::string& discountCurveName) const;
     
     // Yield calculations
     Real calculateYieldToMaturity(const FixedCouponBond& bond,
@@ -110,55 +115,79 @@ public:
                            const Date& valuationDate) const;
     
     Real calculateDV01(const FixedCouponBond& bond,
-                      const Date& valuationDate,
-                      const std::string& discountCurveName = "USD") const;
+                      const Date& valuationDate) const;
     
-    // Risk calculations using market curves
+    // Risk calculations using asset-associated market curves
     Real calculateCurveBasedDuration(const FixedCouponBond& bond,
                                     const Date& valuationDate,
-                                    const std::string& discountCurveName = "USD",
                                     Real bumpSize = 0.0001) const; // 1bp
     
     Real calculateCurveBasedConvexity(const FixedCouponBond& bond,
                                      const Date& valuationDate,
-                                     const std::string& discountCurveName = "USD",
                                      Real bumpSize = 0.0001) const;
     
-    // Spread calculations
+    // Alternative risk calculations (curve-based)
+    Real calculateDV01WithCurve(const FixedCouponBond& bond,
+                               const Date& valuationDate,
+                               const std::string& discountCurveName) const;
+    
+    Real calculateCurveBasedDurationWithCurve(const FixedCouponBond& bond,
+                                             const Date& valuationDate,
+                                             const std::string& discountCurveName,
+                                             Real bumpSize = 0.0001) const;
+    
+    // Spread calculations (asset-based)
     Real calculateZSpread(const FixedCouponBond& bond,
                          Real marketPrice,
                          const Date& valuationDate,
-                         const std::string& benchmarkCurveName = "USD",
                          PriceType priceType = PriceType::CLEAN) const;
     
     Real calculateOptionAdjustedSpread(const FixedCouponBond& bond,
                                       Real marketPrice,
-                                      const Date& valuationDate,
-                                      const std::string& benchmarkCurveName = "USD") const;
+                                      const Date& valuationDate) const;
+    
+    // Alternative spread calculations (curve-based)
+    Real calculateZSpreadWithCurve(const FixedCouponBond& bond,
+                                  Real marketPrice,
+                                  const Date& valuationDate,
+                                  const std::string& benchmarkCurveName,
+                                  PriceType priceType = PriceType::CLEAN) const;
     
     // Cashflow analysis
     CashFlowSchedule generateBondCashFlows(const FixedCouponBond& bond,
                                           const Date& settlementDate) const;
     
     std::vector<Real> calculateCashFlowPresentValues(const FixedCouponBond& bond,
-                                                    const Date& valuationDate,
-                                                    const std::string& discountCurveName = "USD") const;
+                                                    const Date& valuationDate) const;
     
-    // Forward pricing
+    // Forward pricing (asset-based)
     Real calculateForwardPrice(const FixedCouponBond& bond,
                               const Date& valuationDate,
-                              const Date& forwardDate,
-                              const std::string& discountCurveName = "USD") const;
+                              const Date& forwardDate) const;
     
-    // Scenario analysis
+    // Alternative methods (curve-based)
+    std::vector<Real> calculateCashFlowPresentValuesWithCurve(const FixedCouponBond& bond,
+                                                             const Date& valuationDate,
+                                                             const std::string& discountCurveName) const;
+    
+    Real calculateForwardPriceWithCurve(const FixedCouponBond& bond,
+                                       const Date& valuationDate,
+                                       const Date& forwardDate,
+                                       const std::string& discountCurveName) const;
+    
+    // Scenario analysis (asset-based)
     std::map<Real, Real> calculatePriceScenarios(const FixedCouponBond& bond,
                                                  const Date& valuationDate,
-                                                 const std::string& discountCurveName,
                                                  const std::vector<Real>& shiftScenarios) const;
     
     BondPricingResults calculateRiskSensitivities(const FixedCouponBond& bond,
-                                                 const Date& valuationDate,
-                                                 const std::string& discountCurveName = "USD") const;
+                                                 const Date& valuationDate) const;
+    
+    // Alternative scenario analysis (curve-based)
+    std::map<Real, Real> calculatePriceScenariosWithCurve(const FixedCouponBond& bond,
+                                                         const Date& valuationDate,
+                                                         const std::string& discountCurveName,
+                                                         const std::vector<Real>& shiftScenarios) const;
     
     // Utilities
     Real accruedInterest(const FixedCouponBond& bond, const Date& settlementDate) const;
