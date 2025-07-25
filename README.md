@@ -1,6 +1,6 @@
-# C++ Quantitative Finance Library - Fixed Coupon Bond Pricing Engine
+# Modern C++ Quantitative Finance Library v2.0
 
-A comprehensive C++ library for fixed income quantitative analytics, featuring a complete Fixed Coupon Bond pricing engine with asset-centric market data management.
+A next-generation C++ quantitative finance library built with modern C++20 features, featuring zero-overhead abstractions, type-safe financial quantities, monadic error handling, and industry-standard design patterns.
 
 ## 🚀 Features
 
@@ -13,13 +13,14 @@ A comprehensive C++ library for fixed income quantitative analytics, featuring a
 - **Date Handling** - Professional date arithmetic with business day conventions
 
 ### Key Capabilities
-- ✅ **Asset-Centric Design** - Market data associated directly with specific assets
-- ✅ **Multiple Serialization Formats** - JSON, XML, and custom text formats
-- ✅ **Comprehensive Yield Calculations** - Newton-Raphson, Bisection, Secant, Brent methods
-- ✅ **Risk Analytics** - Duration, Convexity, DV01, and scenario analysis
-- ✅ **Cashflow Generation** - Automatic bond payment schedule creation
-- ✅ **Market Data Management** - Curves, spots, FX rates, volatility surfaces
-- ✅ **Professional Build System** - CMake with comprehensive test suite
+- ✅ **Zero-Overhead Abstractions** - CRTP-based polymorphism without virtual function costs
+- ✅ **Type-Safe Financial Quantities** - Compile-time prevention of unit mixing errors
+- ✅ **Monadic Error Handling** - Functional error management without exceptions
+- ✅ **Observer Pattern** - Automatic updates for market data changes
+- ✅ **Modern Memory Management** - Smart pointers and RAII throughout
+- ✅ **Template Metaprogramming** - Compile-time optimizations and type safety
+- ✅ **C++20 Features** - Concepts, ranges, chrono, and constexpr improvements
+- ✅ **Header-Only Design** - Easy integration with minimal build complexity
 
 ## 🏗️ Architecture
 
