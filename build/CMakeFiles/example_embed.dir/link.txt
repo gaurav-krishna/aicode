@@ -1,0 +1,1 @@
+/usr/bin/c++ -Xlinker --dependency-file=CMakeFiles/example_embed.dir/link.d CMakeFiles/example_embed.dir/examples/main.cpp.o -o example_embed  libluajit_wrapper.a /usr/lib/x86_64-linux-gnu/libluajit-5.1.so /usr/lib/x86_64-linux-gnu/libdl.a
