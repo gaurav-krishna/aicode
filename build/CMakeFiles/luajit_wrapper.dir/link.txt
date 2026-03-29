@@ -1,0 +1,2 @@
+/usr/bin/ar qc libluajit_wrapper.a CMakeFiles/luajit_wrapper.dir/src/LuaJITWrapper.cpp.o
+/usr/bin/ranlib libluajit_wrapper.a
